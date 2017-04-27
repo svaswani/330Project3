@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+    <div id="chatbox"></div>
+
+    <!--<form name="message" action="">
+            <input name="usermsg" type="text" id="usermsg" size="63" />
+            <input name="submitmsg" type="submit"  id="submitmsg" value="Send" />
+        </form>-->
+
+    <input name="usermsg" type="text" id="usermsg" size="63" />
+    <button id="submitmsg" onclick="submit()">Send</button>
+</div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+<script type="text/javascript">
+    var accessToken = "427fba490ee242f5b6081ce0fd8bd27a",
+        baseUrl = "https://api.api.ai/v1/";
+    function writeToChatbox(sender, message) {
+        var chatbox = $("#chatbox");
+        var start = chatbox[0].innerText;
+        if (start.length > 0) {
+            start += "\n";
+        }
+        start += sender + ": ";
+        chatbox[0].innerText = start + message;
+    }
+    function messageReceived(text) {
+        var chatbox = $("#chatbox");
+        console.log("Received " + text);
+        //writeToChatbox("Chatbot", text);
+    }
+    function send(text) {
+        console.log(JSON.stringify({ query: text, lang: "en", sessionId: "stealth" }));
+        var chatbox = $("#chatbox");
+        writeToChatbox("You", text);
+        console.log("Sending " + text);
+        $.ajax({
+            type: "POST",
+            url: baseUrl + "query",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            beforeSend: function (request) {
+                request.setRequestHeader("Authorization", "Bearer " + accessToken);
+            },
+            data: JSON.stringify({ query: text, lang: "en", sessionId: "stealth", v: 20150910 }),
+            success: function (data) {
+                // prepareResponse(data);
+                console.log(data.result.speech);
+                writeToChatbox("Stella", data.result.speech);
+            },
+            error: function () {
+                console.log("meep");
+            }
+        });
+        window.setTimeout(function () {
+            messageReceived(text);
+        }, 500);
+    }
+    document.onkeydown = function () {
+        if (window.event.keyCode == '13') {
+            submit();
+        }
+    }
+    function submit(event) {
+        var inputbox = $('#usermsg');
+        var message = inputbox.val();
+        send(message);
+        inputbox.val("");
+    }
+    // jQuery Document
+    $(document).ready(function () {
+    });
+</script>
