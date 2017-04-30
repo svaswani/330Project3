@@ -1,0 +1,62 @@
+form, p, span {
+    margin: 0;
+    padding: 0;
+}
+
+input {
+    font: 12px arial;
+}
+
+a {
+    color: #0000FF;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#wrapper, #loginform {
+    margin: 0 auto;
+    background-color: rgba(0, 148, 149, .25);
+    border: #95989A solid 2px;
+    width: 504px;
+    border: 1px solid #ACD8F0;
+}
+
+#loginform {
+    padding-top: 18px;
+}
+
+#loginform p {
+    margin: 5px;
+}
+
+#chatbox {
+    text-align: left;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: rgba(0, 148, 149, .25);
+    height: 400px;
+    width: 50%;
+    border: 1px solid #f6f6f6;
+    overflow: auto;
+}
+#userInput {
+    text-align: center;
+}
+#usermsg {
+    width: 395px;
+    border: 1px solid #f6f6f6;
+    margin: 10px;
+}
+
+#submit {
+    width: 60px;
+}
+
+button {
+    margin: 10px;
+}
+
+
