@@ -71,6 +71,13 @@
             inputbox.val("");
         }
 
+        function sendGiphy(url) {
+            var inputbox = $('#usermsg');
+            var message = url;
+            send(message);
+            inputbox.val("");
+        }
+
         function giphyButton(event) {
             var inputbox = $('#usermsg');
             var message = inputbox.val();
@@ -87,8 +94,11 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {
-                    // prepareResponse(data);
-                    console.log(data.data[0].images.fixed_height_small.url);
+                    var html = "";
+                    for(var i = 0; i < data.data.length; i++) {
+                        html += '<img src="'+data.data[i].images.fixed_height_small.url+'" onclick="sendGiphy(\''+data.data[i].images.fixed_height_small.url+'\')" />';
+                    }
+                    document.getElementById("giphyImages").innerHTML = html;
                 },
                 error: function () {
                     console.log("meep");
@@ -117,6 +127,9 @@
         <input name="usermsg" type="text" id="usermsg" size="63" />
         <button id="giphybutton" onclick="giphyButton()">Giphy</button>
         <button id="submitmsg" onclick="submit()">Send</button>
+    </div>
+    <div id="giphyImages">
+
     </div>
 </body>
 
