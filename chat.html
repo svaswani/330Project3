@@ -25,7 +25,7 @@
             if (start.length > 0) {
                 start += "<br>";
             }
-            if (message.indexOf("giphy") >= 0) {
+            if (message.indexOf("giphy") >= 0 && message.indexOf("http") >= 0) {
                 start += sender + ": ";
                 chatbox[0].innerHTML = start + '<img src=" '+message+' \n" />';
             }
