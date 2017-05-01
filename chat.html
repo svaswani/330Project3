@@ -15,6 +15,9 @@
     <script type="text/javascript">
         var accessToken = "427fba490ee242f5b6081ce0fd8bd27a",
             baseUrl = "https://api.api.ai/v1/";
+
+        var giphyToken = "dc6zaTOxFJmzC";
+
         function writeToChatbox(sender, message) {
             var chatbox = $("#chatbox");
             var start = chatbox[0].innerText;
@@ -67,6 +70,34 @@
             send(message);
             inputbox.val("");
         }
+
+        function giphyButton(event) {
+            var inputbox = $('#usermsg');
+            var message = inputbox.val();
+            //giphyUrl = "http://api.giphy.com/v1/gifs/search?q=" + message + "&api_key=dc6zaTOxFJmzC";
+            giphySearch(message);
+            inputbox.val("");
+        }
+
+        function giphySearch(text) {
+            console.log(text);
+            $.ajax({
+                type: "GET",
+                url: "http://api.giphy.com/v1/gifs/search?q=" + text + "&api_key=dc6zaTOxFJmzC",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    // prepareResponse(data);
+                    console.log(data.data[0].images.fixed_height_small.url);
+                },
+                error: function () {
+                    console.log("meep");
+                }
+            });
+        }
+
+
+
         // jQuery Document
         $(document).ready(function () {
         });
@@ -84,6 +115,7 @@
         </form>-->
     <div id="userInput">
         <input name="usermsg" type="text" id="usermsg" size="63" />
+        <button id="giphybutton" onclick="giphyButton()">Giphy</button>
         <button id="submitmsg" onclick="submit()">Send</button>
     </div>
 </body>
