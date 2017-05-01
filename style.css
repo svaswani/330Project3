@@ -59,6 +59,15 @@ a:hover {
     width: 60px;
 }
 
+#giphyImages img{
+    cursor:pointer;
+
+}
+
+#giphyImages img:hover {
+   border: 2px inset #000;
+}
+
 button {
     margin: 10px;
 }
