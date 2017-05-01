@@ -20,13 +20,22 @@
 
         function writeToChatbox(sender, message) {
             var chatbox = $("#chatbox");
-            var start = chatbox[0].innerText;
+            var start = chatbox[0].innerHTML;
+
             if (start.length > 0) {
-                start += "\n";
+                start += "<br>";
             }
-            start += sender + ": ";
-            chatbox[0].innerText = start + message;
+            if (message.indexOf("giphy") >= 0) {
+                start += sender + ": ";
+                chatbox[0].innerHTML = start + '<img src=" '+message+' \n" />';
+            }
+            else {
+                start += sender + ": ";
+                chatbox[0].innerHTML = start + message;
+            }
+            
         }
+
         function messageReceived(text) {
             var chatbox = $("#chatbox");
             console.log("Received " + text);
