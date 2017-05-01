@@ -68,6 +68,11 @@ a:hover {
    border: 2px inset #000;
 }
 
+#heading {
+    margin: 0 auto;
+    text-align: center;
+}
+
 button {
     margin: 10px;
 }
