@@ -15,6 +15,9 @@ a {
 a:hover {
     text-decoration: underline;
 }
+.text {
+    font-family: Dosis, sans-serif;
+}
 
 #wrapper, #loginform {
     margin: 0 auto;
@@ -33,6 +36,7 @@ a:hover {
 }
 
 #chatbox {
+    font-family: Dosis, sans-serif;
     text-align: left;
     margin: 0 auto;
     padding: 10px;
@@ -43,9 +47,11 @@ a:hover {
     overflow: auto;
 }
 #userInput {
+    font-family: Dosis, sans-serif;
     text-align: center;
 }
 #usermsg {
+    font-family: Dosis, sans-serif;
     width: 395px;
     border: 1px solid #f6f6f6;
     margin: 10px;
@@ -71,6 +77,7 @@ a:hover {
 #heading {
     margin: 0 auto;
     text-align: center;
+    font-family: Dosis, sans-serif;
 }
 
 button {
