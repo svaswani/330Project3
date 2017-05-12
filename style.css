@@ -7,6 +7,14 @@ input {
     font: 12px arial;
 }
 
+[contenteditable] {
+  border: 1px solid #000;
+  line-height: 1.4em;
+  -webkit-appearance: textfield;
+  appearance: textfield;
+  margin: auto;
+}
+
 a {
     color: #0000FF;
     text-decoration: none;
@@ -15,6 +23,7 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
 .text {
     font-family: Dosis, sans-serif;
 }
@@ -46,15 +55,19 @@ a:hover {
     border: 1px solid #f6f6f6;
     overflow: auto;
 }
+
 #userInput {
     font-family: Dosis, sans-serif;
     text-align: center;
+    margin: auto;
 }
+
 #usermsg {
     font-family: Dosis, sans-serif;
     width: 395px;
     border: 1px solid #f6f6f6;
     margin: 10px;
+    display: inline;
 }
 
 #submit {
@@ -65,13 +78,12 @@ a:hover {
     width: 60px;
 }
 
-#giphyImages img{
-    cursor:pointer;
-
+#giphyImages img {
+    cursor: pointer;
 }
 
 #giphyImages img:hover {
-   border: 2px inset #000;
+    border: 2px inset #000;
 }
 
 #heading {
@@ -83,5 +95,3 @@ a:hover {
 button {
     margin: 10px;
 }
-
-

@@ -30,8 +30,8 @@
             <input name="usermsg" type="text" id="usermsg" size="63" />
             <input name="submitmsg" type="submit"  id="submitmsg" value="Send" />
         </form>-->
-    <div id="userInput">
-        <input name="usermsg" type="text" id="usermsg" size="63" />
+    <div id="userInput" ondrop="drop(event)" ondragover="allowDrop(event)" >
+        <div name="usermsg" id="usermsg" contenteditable="true"></div>
         <button id="giphybutton" onclick="giphyButton()">Giphy</button>
         <button id="submitmsg" onclick="submit()">Send</button>
     </div>
