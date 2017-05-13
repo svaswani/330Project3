@@ -11,6 +11,7 @@ var dragGif = "";
 var effectAudio = undefined;
 
 function init() {
+    // audio
     effectAudio = document.querySelector("#effectAudio");
     console.log(effectAudio);
     //effectAudio.volume = 0.3;
@@ -28,15 +29,15 @@ function writeToChatbox(sender, message) {
     // if it's a giphy put it in an image tag
     // search the url to check if giphy
     if (message.indexOf("giphy") >= 0 && message.indexOf("http") >= 0) {
-        start += sender + ": ";
+        start += sender.bold() + ": ";
         chatbox[0].innerHTML = start + '<img src=" ' + message + ' \n" />';
     }
     // otherwise just send as text
     else {
-        start += sender + ": ";
+        start += sender.bold() + ": ";
         chatbox[0].innerHTML = start + message;
     }
-
+    // scroll down to most recent messages
     chatbox[0].scrollTop = chatbox[0].scrollHeight;
 }
 
@@ -52,11 +53,7 @@ function send(text) {
     //console.log(JSON.stringify({ query: text, lang: "en", sessionId: "stealth" }));
     var chatbox = $("#chatbox");
     writeToChatbox("You", text);
-    // effectAudio.src = "alert3.mp3";
-    // effectAudio.play();
-    // console.log(effectAudio.src);
-    //effectAudio.pause();
-    //console.log("Sending " + text);
+
     // post requirements for api.ai
     $.ajax({
         type: "POST",
@@ -82,6 +79,7 @@ function send(text) {
     });
 
     // timer for response from stella
+    // delays slightly so the response is more human like and not immediate 
     window.setTimeout(function () {
         messageReceived(text);
     }, 500);
@@ -103,6 +101,7 @@ function submit(event) {
         //console.log(message);
     }
     send(message);
+    // clears previous imput after sending
     inputbox.html("");
 }
 
