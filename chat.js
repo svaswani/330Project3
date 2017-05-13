@@ -46,6 +46,10 @@ function messageReceived(text) {
     var chatbox = $("#chatbox");
     //console.log("Received " + text);
     //writeToChatbox("Chatbot", text);
+    effectAudio.src = "alert3.mp3";
+    effectAudio.play();
+    console.log(effectAudio.src);
+
 }
 
 // sends to apis 
@@ -67,9 +71,7 @@ function send(text) {
         success: function (data) {
             // prepareResponse(data);
             //console.log(data.result.speech);
-            effectAudio.src = "alert3.mp3";
-            effectAudio.play();
-            console.log(effectAudio.src);
+
             writeToChatbox("Stella", data.result.speech);
         },
         // debgugging... did something go wrong?
@@ -82,7 +84,7 @@ function send(text) {
     // delays slightly so the response is more human like and not immediate 
     window.setTimeout(function () {
         messageReceived(text);
-    }, 500);
+    }, 700);
 }
 
 // send on enter 
