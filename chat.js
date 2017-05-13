@@ -6,6 +6,9 @@ var accessToken = "427fba490ee242f5b6081ce0fd8bd27a",
 // giphy api token
 var giphyToken = "dc6zaTOxFJmzC";
 
+// global
+var dragGif = "";
+
 // writes to chatbox once content comes from api and user sends content
 function writeToChatbox(sender, message) {
     var chatbox = $("#chatbox");
@@ -81,8 +84,9 @@ document.onkeydown = function () {
 function submit(event) {
     var inputbox = $('#usermsg');
     var message = inputbox.html();
-    if(message.charAt(0)=="<"){
-        message = document.getElementById("drag1").src;
+    if (message.charAt(0) == "<") {
+        
+        message = dragGif;
         console.log(message);
     }
     send(message);
@@ -120,7 +124,8 @@ function giphySearch(text) {
             // concatenate each image url from api into an image tag that loads into the html
             var html = "";
             for (var i = 0; i < data.data.length; i++) {
-                html += '<img src="' + data.data[i].images.fixed_height_small.url + '" onclick="sendGiphy(\'' + data.data[i].images.fixed_height_small.url + '\')" draggable=true ondragstart="drag(event)" id="drag1"/>';
+                html += '<img src="' + data.data[i].images.fixed_height_small.url + 
+                '" onclick="sendGiphy(\'' + data.data[i].images.fixed_height_small.url + '\')" draggable=true ondragstart="drag(event)" id="drag'+ i+'"/>';
             }
             document.getElementById("giphyImages").innerHTML = html;
             //console.log(data.data[i].images.fixed_height_small.url);
@@ -146,8 +151,8 @@ function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     //console.log(data);
+    dragGif = document.getElementById(data).src;
     ev.target.appendChild(document.getElementById(data));
-    //console.log(document.getElementById(data).src);
 }
 // jQuery Document
 $(document).ready(function () {
