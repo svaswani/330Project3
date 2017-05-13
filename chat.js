@@ -7,7 +7,6 @@ var accessToken = "427fba490ee242f5b6081ce0fd8bd27a",
 var giphyToken = "dc6zaTOxFJmzC";
 
 // global
-var dragGif = "";
 var effectAudio = undefined;
 
 function init() {
@@ -30,7 +29,7 @@ function writeToChatbox(sender, message) {
     // search the url to check if giphy
     if (message.indexOf("giphy") >= 0 && message.indexOf("http") >= 0) {
         start += sender.bold() + ": ";
-        chatbox[0].innerHTML = start + '<img src=" ' + message + ' \n" />';
+        chatbox[0].innerHTML = start + '<img src="' + message + '" />';
     }
     // otherwise just send as text
     else {
@@ -87,7 +86,7 @@ function send(text) {
     }, 700);
 }
 
-// send on enter 
+// send on enter key press
 document.onkeydown = function () {
     if (window.event.keyCode == '13') {
         submit();
@@ -97,14 +96,10 @@ document.onkeydown = function () {
 // submit user message and send content to send function
 function submit(event) {
     var inputbox = $('#usermsg');
-    var message = inputbox.html();
-    if (message.charAt(0) == "<") {
-        message = dragGif;
-        //console.log(message);
-    }
+    var message = inputbox.val();
     send(message);
     // clears previous imput after sending
-    inputbox.html("");
+    inputbox.val("");
 }
 
 // send giphy from user to send function
@@ -112,17 +107,17 @@ function sendGiphy(url) {
     var inputbox = $('#usermsg');
     var message = url;
     send(message);
-    inputbox.html("");
+    inputbox.val("");
     giphySearch("");
 }
 
 // search for gif by pressing the button
 function giphyButton(event) {
     var inputbox = $('#usermsg');
-    var message = inputbox.html();
+    var message = inputbox.val();
     //giphyUrl = "http://api.giphy.com/v1/gifs/search?q=" + message + "&api_key=dc6zaTOxFJmzC";
     giphySearch(message);
-    inputbox.html("");
+    inputbox.val("");
 }
 
 // giphy search and giphy api requests 
@@ -165,8 +160,9 @@ function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     //console.log(data);
-    dragGif = document.getElementById(data).src;
-    ev.target.appendChild(document.getElementById(data));
+    var src = document.getElementById(data).src;
+    send(src);
+    giphySearch("");
 }
 // jQuery Document
 $(document).ready(function () {

@@ -20,18 +20,18 @@
 
 <body onload="init()">
     <div id="heading">
-        <h2>Welcome to Stella, your personal assistant!</h2>
+        <h1>Welcome to Stella, your personal assistant!</h1>
         
         
     </div>
-    <div id="chatbox"></div>
+    <div id="chatbox" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 
     <!--<form name="message" action="">
             <input name="usermsg" type="text" id="usermsg" size="63" />
             <input name="submitmsg" type="submit"  id="submitmsg" value="Send" />
         </form>-->
     <div id="userInput"  >
-        <div id="usermsg" contenteditable="true" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <input id="usermsg" />
         <button id="giphybutton" onclick="giphyButton()">Giphy</button>
         <button id="submitmsg" onclick="submit()">Send</button>
     </div>
