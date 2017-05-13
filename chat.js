@@ -8,6 +8,13 @@ var giphyToken = "dc6zaTOxFJmzC";
 
 // global
 var dragGif = "";
+var effectAudio = undefined;
+
+function init() {
+    effectAudio = document.querySelector("#effectAudio");
+    console.log(effectAudio);
+    //effectAudio.volume = 0.3;
+}
 
 // writes to chatbox once content comes from api and user sends content
 function writeToChatbox(sender, message) {
@@ -45,6 +52,10 @@ function send(text) {
     //console.log(JSON.stringify({ query: text, lang: "en", sessionId: "stealth" }));
     var chatbox = $("#chatbox");
     writeToChatbox("You", text);
+    // effectAudio.src = "alert3.mp3";
+    // effectAudio.play();
+    // console.log(effectAudio.src);
+    //effectAudio.pause();
     //console.log("Sending " + text);
     // post requirements for api.ai
     $.ajax({
@@ -59,6 +70,9 @@ function send(text) {
         success: function (data) {
             // prepareResponse(data);
             //console.log(data.result.speech);
+            effectAudio.src = "alert3.mp3";
+            effectAudio.play();
+            console.log(effectAudio.src);
             writeToChatbox("Stella", data.result.speech);
         },
         // debgugging... did something go wrong?
@@ -85,9 +99,8 @@ function submit(event) {
     var inputbox = $('#usermsg');
     var message = inputbox.html();
     if (message.charAt(0) == "<") {
-        
         message = dragGif;
-        console.log(message);
+        //console.log(message);
     }
     send(message);
     inputbox.html("");
@@ -124,8 +137,8 @@ function giphySearch(text) {
             // concatenate each image url from api into an image tag that loads into the html
             var html = "";
             for (var i = 0; i < data.data.length; i++) {
-                html += '<img src="' + data.data[i].images.fixed_height_small.url + 
-                '" onclick="sendGiphy(\'' + data.data[i].images.fixed_height_small.url + '\')" draggable=true ondragstart="drag(event)" id="drag'+ i+'"/>';
+                html += '<img src="' + data.data[i].images.fixed_height_small.url +
+                    '" onclick="sendGiphy(\'' + data.data[i].images.fixed_height_small.url + '\')" draggable=true ondragstart="drag(event)" id="drag' + i + '"/>';
             }
             document.getElementById("giphyImages").innerHTML = html;
             //console.log(data.data[i].images.fixed_height_small.url);

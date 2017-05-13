@@ -18,11 +18,11 @@
     <script src="chat.js"></script>
 </head>
 
-<body>
+<body onload="init()">
     <div id="heading">
         <h2>Welcome to Stella, your personal assistant!</h2>
-        <img src="giphy.png">
-        <h3>(c) Sneha Vaswani and Sam Heckle</h3>
+        
+        
     </div>
     <div id="chatbox"></div>
 
@@ -36,8 +36,16 @@
         <button id="submitmsg" onclick="submit()">Send</button>
     </div>
     <div id="giphyImages">
-
     </div>
+
+    <section id="audioControls">
+		<audio id="effectAudio" controls></audio>
+	</section>
+
+    <footer>
+        <h3>(c) Sneha Vaswani and Sam Heckle</h3>
+        <img src="giphy.png">
+    </footer>
 </body>
 
 </html>
